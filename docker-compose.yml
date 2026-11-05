@@ -1,0 +1,91 @@
+version: '3.8'
+
+services:
+  # PostgreSQL Database
+  postgres:
+    image: postgres:15-alpine
+    container_name: skeptical-control-postgres
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-skeptical}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-skeptical_dev}
+      POSTGRES_DB: ${POSTGRES_DB:-skeptical_control}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-skeptical}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Backend API
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: skeptical-control-backend
+    environment:
+      NODE_ENV: ${NODE_ENV:-development}
+      PORT: ${BACKEND_PORT:-3001}
+      DATABASE_URL: postgresql://${POSTGRES_USER:-skeptical}:${POSTGRES_PASSWORD:-skeptical_dev}@postgres:5432/${POSTGRES_DB:-skeptical_control}
+      JWT_SECRET: ${JWT_SECRET:-dev-secret-change-in-production}
+      JWT_EXPIRES_IN: ${JWT_EXPIRES_IN:-7d}
+      RESEARCH_ENGINE_URL: http://research-engine:8000
+    ports:
+      - "3001:3001"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
+      - /app/dist
+      - project_uploads:/app/uploads
+      - workspaces:/app/workspaces
+
+  # Research Engine (Python/FastAPI)
+  research-engine:
+    build:
+      context: ./research-engine
+      dockerfile: Dockerfile
+    container_name: skeptical-control-research-engine
+    environment:
+      PYTHONUNBUFFERED: 1
+      WORKSPACE_DIR: /app/workspaces
+      MAX_UPLOAD_SIZE: ${MAX_UPLOAD_SIZE:-104857600}
+      MAX_EXTRACTED_SIZE: ${MAX_EXTRACTED_SIZE:-524288000}
+      DOCKER_CPU_LIMIT: ${DOCKER_CPU_LIMIT:-2}
+      DOCKER_MEMORY_LIMIT: ${DOCKER_MEMORY_LIMIT:-2g}
+      DOCKER_TIME_LIMIT: ${DOCKER_TIME_LIMIT:-300}
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./research-engine:/app
+      - /app/__pycache__
+      - project_uploads:/app/uploads
+      - workspaces:/app/workspaces
+      - /var/run/docker.sock:/var/run/docker.sock
+    depends_on:
+      - backend
+
+  # Frontend (Development)
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.dev
+    container_name: skeptical-control-frontend
+    environment:
+      VITE_API_URL: ${VITE_API_URL:-http://localhost:3001}
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    depends_on:
+      - backend
+
+volumes:
+  postgres_data:
+  project_uploads:
+  workspaces:
