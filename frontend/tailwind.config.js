@@ -8,21 +8,24 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Dark theme colors
         background: {
+          DEFAULT: '#ffffff',
           dark: '#0a0a0b',
           darkSecondary: '#111113',
           darkTertiary: '#18181b',
         },
         surface: {
+          DEFAULT: '#f4f4f5',
           dark: '#1c1c1f',
           darkSecondary: '#27272a',
         },
         border: {
+          DEFAULT: '#e4e4e7',
           dark: '#27272a',
           darkSecondary: '#3f3f46',
         },
         text: {
+          DEFAULT: '#09090b',
           darkPrimary: '#fafafa',
           darkSecondary: '#a1a1aa',
           darkTertiary: '#71717a',

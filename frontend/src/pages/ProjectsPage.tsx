@@ -19,8 +19,8 @@ export default function ProjectsPage() {
     <div className="p-8">
       <div className="flex items-center justify-between mb-8">
         <div>
-          <h1 className="text-2xl font-bold text-text-darkPrimary mb-2">Projects</h1>
-          <p className="text-text-darkSecondary">Manage your microservices projects</p>
+          <h1 className="text-2xl font-bold text-text dark:text-text-darkPrimary mb-2">Projects</h1>
+          <p className="text-text-darkSecondary dark:text-text-darkSecondary">Manage your microservices projects</p>
         </div>
         <Link
           to="/projects/upload"
@@ -43,7 +43,7 @@ export default function ProjectsPage() {
             <Link
               key={project.id}
               to={`/projects/${project.id}`}
-              className="bg-surface-dark border border-border-dark rounded-xl p-6 hover:border-accent-primary transition-colors"
+              className="bg-surface dark:bg-surface-dark border border-border dark:border-border-dark rounded-xl p-6 hover:border-accent-primary transition-colors"
             >
               <div className="flex items-start justify-between mb-4">
                 <div className="p-2 bg-accent-primary/10 rounded-lg">
@@ -51,8 +51,8 @@ export default function ProjectsPage() {
                 </div>
                 <StatusIndicator status={project.status || 'uploaded'} />
               </div>
-              <h3 className="font-semibold text-text-darkPrimary mb-2">{project.name}</h3>
-              <p className="text-sm text-text-darkSecondary mb-4 line-clamp-2">
+              <h3 className="font-semibold text-text dark:text-text-darkPrimary mb-2">{project.name}</h3>
+              <p className="text-sm text-text-darkSecondary dark:text-text-darkSecondary mb-4 line-clamp-2">
                 {project.description || 'No description provided'}
               </p>
               <div className="text-xs text-text-darkTertiary">

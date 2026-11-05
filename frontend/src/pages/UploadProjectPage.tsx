@@ -69,11 +69,11 @@ export default function UploadProjectPage() {
   return (
     <div className="p-8 max-w-3xl mx-auto">
       <div className="mb-8">
-        <h1 className="text-2xl font-bold text-text-darkPrimary mb-2">Upload Project</h1>
-        <p className="text-text-darkSecondary">Upload a microservices project as a ZIP file</p>
+        <h1 className="text-2xl font-bold text-text dark:text-text-darkPrimary mb-2">Upload Project</h1>
+        <p className="text-text-darkSecondary dark:text-text-darkSecondary">Upload a microservices project as a ZIP file</p>
       </div>
 
-      <form onSubmit={handleSubmit} className="bg-surface-dark border border-border-dark rounded-xl p-8">
+      <form onSubmit={handleSubmit} className="bg-surface dark:bg-surface-dark border border-border dark:border-border-dark rounded-xl p-8">
         {error && (
           <div className="mb-6 p-4 bg-red-500/10 border border-red-500/20 rounded-lg text-red-500">
             {error}
@@ -81,27 +81,27 @@ export default function UploadProjectPage() {
         )}
 
         <div className="mb-6">
-          <label className="block text-sm font-medium text-text-darkSecondary mb-2">
+          <label className="block text-sm font-medium text-text-darkSecondary dark:text-text-darkSecondary mb-2">
             Project File (ZIP)
           </label>
           <div
             className={`border-2 border-dashed rounded-lg p-8 text-center transition-colors ${
-              file ? 'border-accent-primary bg-accent-primary/5' : 'border-border-dark hover:border-accent-primary'
+              file ? 'border-accent-primary bg-accent-primary/5' : 'border-border dark:border-border-dark hover:border-accent-primary'
             }`}
           >
             {file ? (
               <div className="flex items-center justify-center gap-3">
                 <FileArchive className="w-8 h-8 text-accent-primary" />
                 <div className="text-left">
-                  <div className="font-medium text-text-darkPrimary">{file.name}</div>
-                  <div className="text-sm text-text-darkSecondary">
+                  <div className="font-medium text-text dark:text-text-darkPrimary">{file.name}</div>
+                  <div className="text-sm text-text-darkSecondary dark:text-text-darkSecondary">
                     {(file.size / 1024 / 1024).toFixed(2)} MB
                   </div>
                 </div>
                 <button
                   type="button"
                   onClick={() => setFile(null)}
-                  className="p-2 hover:bg-surface-darkSecondary rounded-lg text-text-darkSecondary"
+                  className="p-2 hover:bg-surface dark:hover:bg-surface-darkSecondary rounded-lg text-text-darkSecondary dark:text-text-darkSecondary"
                 >
                   <X className="w-5 h-5" />
                 </button>
@@ -109,7 +109,7 @@ export default function UploadProjectPage() {
             ) : (
               <div>
                 <Upload className="w-12 h-12 text-text-darkTertiary mx-auto mb-4" />
-                <p className="text-text-darkSecondary mb-2">
+                <p className="text-text-darkSecondary dark:text-text-darkSecondary mb-2">
                   Drag and drop a ZIP file, or click to browse
                 </p>
                 <p className="text-xs text-text-darkTertiary">Maximum file size: 100MB</p>
@@ -122,7 +122,7 @@ export default function UploadProjectPage() {
                 />
                 <label
                   htmlFor="file-upload"
-                  className="inline-block mt-4 px-4 py-2 bg-surface-darkSecondary hover:bg-surface-dark border border-border-dark rounded-lg text-sm font-medium cursor-pointer transition-colors"
+                  className="inline-block mt-4 px-4 py-2 bg-surface dark:bg-surface-darkSecondary hover:bg-surface dark:hover:bg-surface-dark border border-border dark:border-border-dark rounded-lg text-sm font-medium cursor-pointer transition-colors"
                 >
                   Browse Files
                 </label>
@@ -132,7 +132,7 @@ export default function UploadProjectPage() {
         </div>
 
         <div className="mb-6">
-          <label htmlFor="name" className="block text-sm font-medium text-text-darkSecondary mb-2">
+          <label htmlFor="name" className="block text-sm font-medium text-text-darkSecondary dark:text-text-darkSecondary mb-2">
             Project Name
           </label>
           <input
@@ -140,14 +140,14 @@ export default function UploadProjectPage() {
             id="name"
             value={name}
             onChange={(e) => setName(e.target.value)}
-            className="w-full px-4 py-3 bg-background-dark border border-border-dark rounded-lg text-text-darkPrimary placeholder-text-darkTertiary focus:outline-none focus:border-accent-primary"
+            className="w-full px-4 py-3 bg-background dark:bg-background-dark border border-border dark:border-border-dark rounded-lg text-text dark:text-text-darkPrimary placeholder-text-darkTertiary focus:outline-none focus:border-accent-primary"
             placeholder="My Microservices Project"
             required
           />
         </div>
 
         <div className="mb-6">
-          <label htmlFor="description" className="block text-sm font-medium text-text-darkSecondary mb-2">
+          <label htmlFor="description" className="block text-sm font-medium text-text-darkSecondary dark:text-text-darkSecondary mb-2">
             Description (optional)
           </label>
           <textarea
@@ -155,7 +155,7 @@ export default function UploadProjectPage() {
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             rows={4}
-            className="w-full px-4 py-3 bg-background-dark border border-border-dark rounded-lg text-text-darkPrimary placeholder-text-darkTertiary focus:outline-none focus:border-accent-primary resize-none"
+            className="w-full px-4 py-3 bg-background dark:bg-background-dark border border-border dark:border-border-dark rounded-lg text-text dark:text-text-darkPrimary placeholder-text-darkTertiary focus:outline-none focus:border-accent-primary resize-none"
             placeholder="Describe your project..."
           />
         </div>
@@ -181,7 +181,7 @@ export default function UploadProjectPage() {
           <button
             type="button"
             onClick={() => navigate('/projects')}
-            className="px-6 py-3 bg-surface-darkSecondary hover:bg-surface-dark border border-border-dark rounded-lg font-medium transition-colors"
+            className="px-6 py-3 bg-surface dark:bg-surface-darkSecondary hover:bg-surface dark:hover:bg-surface-dark border border-border dark:border-border-dark rounded-lg font-medium transition-colors"
           >
             Cancel
           </button>

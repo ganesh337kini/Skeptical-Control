@@ -114,16 +114,16 @@ export default function ServiceTopologyPage() {
       <div className="mb-4 flex items-center justify-between">
         <Link
           to={`/projects/${id}`}
-          className="flex items-center gap-2 text-sm text-text-darkSecondary hover:text-text-darkPrimary"
+          className="flex items-center gap-2 text-sm text-text-darkSecondary dark:text-text-darkSecondary hover:text-text dark:hover:text-text-darkPrimary"
         >
           <ArrowLeft className="w-4 h-4" />
           Back to Project
         </Link>
-        <h1 className="text-2xl font-bold text-text-darkPrimary">Service Topology</h1>
+        <h1 className="text-2xl font-bold text-text dark:text-text-darkPrimary">Service Topology</h1>
         <div className="w-32" />
       </div>
 
-      <div className="flex-1 bg-surface-dark border border-border-dark rounded-xl overflow-hidden">
+      <div className="flex-1 bg-surface dark:bg-surface-dark border border-border dark:border-border-dark rounded-xl overflow-hidden">
         <ReactFlow
           nodes={nodes}
           edges={edges}

@@ -74,33 +74,33 @@ export default function ProjectDetailsPage() {
       <div className="mb-8">
         <Link
           to="/projects"
-          className="flex items-center gap-2 text-sm text-text-darkSecondary hover:text-text-darkPrimary mb-4"
+          className="flex items-center gap-2 text-sm text-text-darkSecondary dark:text-text-darkSecondary hover:text-text dark:hover:text-text-darkPrimary mb-4"
         >
           <ArrowLeft className="w-4 h-4" />
           Back to Projects
         </Link>
         <div className="flex items-start justify-between">
           <div>
-            <h1 className="text-2xl font-bold text-text-darkPrimary mb-2">{project.name}</h1>
-            <p className="text-text-darkSecondary">{project.description || 'No description'}</p>
+            <h1 className="text-2xl font-bold text-text dark:text-text-darkPrimary mb-2">{project.name}</h1>
+            <p className="text-text-darkSecondary dark:text-text-darkSecondary">{project.description || 'No description'}</p>
           </div>
           <StatusIndicator status={project.status || 'uploaded'} />
         </div>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
-        <div className="bg-surface-dark border border-border-dark rounded-xl p-6">
+        <div className="bg-surface dark:bg-surface-dark border border-border dark:border-border-dark rounded-xl p-6">
           <div className="flex items-center gap-3 mb-4">
             <div className="p-2 bg-accent-primary/10 rounded-lg">
               <Server className="w-5 h-5 text-accent-primary" />
             </div>
-            <h3 className="font-semibold text-text-darkPrimary">Environment</h3>
+            <h3 className="font-semibold text-text dark:text-text-darkPrimary">Environment</h3>
           </div>
           <div className="mb-4">
-            <div className="text-2xl font-bold text-text-darkPrimary mb-1">
+            <div className="text-2xl font-bold text-text dark:text-text-darkPrimary mb-1">
               {isRunning ? 'Running' : 'Stopped'}
             </div>
-            <div className="text-sm text-text-darkSecondary">
+            <div className="text-sm text-text-darkSecondary dark:text-text-darkSecondary">
               {envStatus?.liveStatus?.containers?.length || 0} containers
             </div>
           </div>
@@ -127,52 +127,52 @@ export default function ProjectDetailsPage() {
           </div>
         </div>
 
-        <div className="bg-surface-dark border border-border-dark rounded-xl p-6">
+        <div className="bg-surface dark:bg-surface-dark border border-border dark:border-border-dark rounded-xl p-6">
           <div className="flex items-center gap-3 mb-4">
             <div className="p-2 bg-accent-primary/10 rounded-lg">
               <Database className="w-5 h-5 text-accent-primary" />
             </div>
-            <h3 className="font-semibold text-text-darkPrimary">Resources</h3>
+            <h3 className="font-semibold text-text dark:text-text-darkPrimary">Resources</h3>
           </div>
           <div className="space-y-2 text-sm">
             <div className="flex justify-between">
-              <span className="text-text-darkSecondary">CPU Limit</span>
-              <span className="text-text-darkPrimary">2 cores</span>
+              <span className="text-text-darkSecondary dark:text-text-darkSecondary">CPU Limit</span>
+              <span className="text-text dark:text-text-darkPrimary">2 cores</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-text-darkSecondary">Memory Limit</span>
-              <span className="text-text-darkPrimary">2 GB</span>
+              <span className="text-text-darkSecondary dark:text-text-darkSecondary">Memory Limit</span>
+              <span className="text-text dark:text-text-darkPrimary">2 GB</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-text-darkSecondary">Time Limit</span>
-              <span className="text-text-darkPrimary">5 min</span>
+              <span className="text-text-darkSecondary dark:text-text-darkSecondary">Time Limit</span>
+              <span className="text-text dark:text-text-darkPrimary">5 min</span>
             </div>
           </div>
         </div>
 
-        <div className="bg-surface-dark border border-border-dark rounded-xl p-6">
+        <div className="bg-surface dark:bg-surface-dark border border-border dark:border-border-dark rounded-xl p-6">
           <div className="flex items-center gap-3 mb-4">
             <div className="p-2 bg-accent-primary/10 rounded-lg">
               <Globe className="w-5 h-5 text-accent-primary" />
             </div>
-            <h3 className="font-semibold text-text-darkPrimary">Network</h3>
+            <h3 className="font-semibold text-text dark:text-text-darkPrimary">Network</h3>
           </div>
           <div className="space-y-2 text-sm">
             <div className="flex justify-between">
-              <span className="text-text-darkSecondary">Isolation</span>
-              <span className="text-text-darkPrimary">Enabled</span>
+              <span className="text-text-darkSecondary dark:text-text-darkSecondary">Isolation</span>
+              <span className="text-text dark:text-text-darkPrimary">Enabled</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-text-darkSecondary">External Access</span>
-              <span className="text-text-darkPrimary">Restricted</span>
+              <span className="text-text-darkSecondary dark:text-text-darkSecondary">External Access</span>
+              <span className="text-text dark:text-text-darkPrimary">Restricted</span>
             </div>
           </div>
         </div>
       </div>
 
-      <div className="bg-surface-dark border border-border-dark rounded-xl p-6">
+      <div className="bg-surface dark:bg-surface-dark border border-border dark:border-border-dark rounded-xl p-6">
         <div className="flex items-center justify-between mb-6">
-          <h2 className="text-lg font-semibold text-text-darkPrimary">Container Status</h2>
+          <h2 className="text-lg font-semibold text-text dark:text-text-darkPrimary">Container Status</h2>
           <Link
             to={`/projects/${id}/topology`}
             className="text-sm text-accent-primary hover:text-accent-primaryHover"
@@ -186,11 +186,11 @@ export default function ProjectDetailsPage() {
             {envStatus.liveStatus.containers.map((container: any) => (
               <div
                 key={container.id}
-                className="p-4 bg-background-dark border border-border-dark rounded-lg"
+                className="p-4 bg-background dark:bg-background-dark border border-border dark:border-border-dark rounded-lg"
               >
                 <div className="flex items-center justify-between">
                   <div>
-                    <div className="font-medium text-text-darkPrimary">{container.name}</div>
+                    <div className="font-medium text-text dark:text-text-darkPrimary">{container.name}</div>
                     <div className="text-xs text-text-darkTertiary mt-1">{container.id.slice(0, 12)}</div>
                   </div>
                   <StatusIndicator

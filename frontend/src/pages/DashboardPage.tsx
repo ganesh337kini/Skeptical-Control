@@ -18,8 +18,8 @@ export default function DashboardPage() {
   return (
     <div className="p-8">
       <div className="mb-8">
-        <h1 className="text-2xl font-bold text-text-darkPrimary mb-2">Dashboard</h1>
-        <p className="text-text-darkSecondary">Overview of your projects and environments</p>
+        <h1 className="text-2xl font-bold text-text dark:text-text-darkPrimary mb-2">Dashboard</h1>
+        <p className="text-text-darkSecondary dark:text-text-darkSecondary">Overview of your projects and environments</p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
@@ -45,9 +45,9 @@ export default function DashboardPage() {
         />
       </div>
 
-      <div className="bg-surface-dark border border-border-dark rounded-xl p-6">
+      <div className="bg-surface dark:bg-surface-dark border border-border dark:border-border-dark rounded-xl p-6">
         <div className="flex items-center justify-between mb-6">
-          <h2 className="text-lg font-semibold text-text-darkPrimary">Recent Projects</h2>
+          <h2 className="text-lg font-semibold text-text dark:text-text-darkPrimary">Recent Projects</h2>
           <Link
             to="/projects"
             className="text-sm text-accent-primary hover:text-accent-primaryHover"
@@ -68,12 +68,12 @@ export default function DashboardPage() {
               <Link
                 key={project.id}
                 to={`/projects/${project.id}`}
-                className="block p-4 bg-background-dark border border-border-dark rounded-lg hover:border-accent-primary transition-colors"
+                className="block p-4 bg-background dark:bg-background-dark border border-border dark:border-border-dark rounded-lg hover:border-accent-primary transition-colors"
               >
                 <div className="flex items-center justify-between">
                   <div>
-                    <h3 className="font-medium text-text-darkPrimary">{project.name}</h3>
-                    <p className="text-sm text-text-darkSecondary mt-1">
+                    <h3 className="font-medium text-text dark:text-text-darkPrimary">{project.name}</h3>
+                    <p className="text-sm text-text-darkSecondary dark:text-text-darkSecondary mt-1">
                       {project.description || 'No description'}
                     </p>
                   </div>
