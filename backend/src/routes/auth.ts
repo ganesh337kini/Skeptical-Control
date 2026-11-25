@@ -22,7 +22,7 @@ router.post('/signup', async (req, res, next) => {
     res.json(result);
   } catch (error) {
     if (error instanceof z.ZodError) {
-      res.status(400).json({ error: 'Validation error', details: error.errors });
+      res.status(400).json({ error: 'Validation error', details: error.issues });
       return;
     }
     if (error instanceof Error && error.message === 'Email already registered') {
@@ -40,7 +40,7 @@ router.post('/login', async (req, res, next) => {
     res.json(result);
   } catch (error) {
     if (error instanceof z.ZodError) {
-      res.status(400).json({ error: 'Validation error', details: error.errors });
+      res.status(400).json({ error: 'Validation error', details: error.issues });
       return;
     }
     if (error instanceof Error && error.message === 'Invalid credentials') {

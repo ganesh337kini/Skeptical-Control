@@ -1,0 +1,42 @@
+batch_id: phase-2
+status: completed_with_environment_limitations
+implemented:
+  - Prometheus, Grafana, OpenTelemetry collector, Locust, and Toxiproxy Compose services
+  - Experiment JSON store with workload, fault, telemetry, baseline, logs, RCA, priority, and timeline records
+  - Workload and fault lifecycle APIs
+  - Explainable baseline RCA and separate service-priority module
+  - Frontend monitoring, fault, RCA, health, topology, and timeline routes
+  - API and acceptance documentation
+required_endpoints:
+  - method: POST
+    path: /api/experiments
+    status: implemented
+  - method: POST
+    path: /api/experiments/:id/workloads
+    status: implemented
+  - method: POST
+    path: /api/experiments/:id/faults
+    status: implemented
+  - method: POST
+    path: /api/experiments/:id/faults/:faultIndex/cleanup
+    status: implemented
+  - method: POST
+    path: /api/experiments/:id/rca
+    status: implemented
+  - method: POST
+    path: /api/experiments/:id/priorities
+    status: implemented
+  - method: POST
+    path: /api/experiments/:id/reset
+    status: implemented
+validation:
+  frontend_build: PASS
+  frontend_tests: PASS (5 tests)
+  backend_build: PASS
+  python_compile: PASS
+  python_phase2_tests: PASS (2 tests)
+  backend_tests: PASS (5 auth tests with isolated mock database)
+  docker_runtime: PASS (Compose stack started; backend and research health checks passed; PostgreSQL healthy and migrations applied)
+warnings:
+  - severity: MEDIUM
+    message: End-to-end workload, fault-injection/cleanup, and observability acceptance scenarios were not exercised; only stack startup, health checks, and migrations were verified.

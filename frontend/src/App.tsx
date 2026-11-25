@@ -11,6 +11,7 @@ import UploadProjectPage from './pages/UploadProjectPage';
 import ProjectDetailsPage from './pages/ProjectDetailsPage';
 import ServiceTopologyPage from './pages/ServiceTopologyPage';
 import SettingsPage from './pages/SettingsPage';
+import { LiveMonitoringPage, FaultInjectionPage, RCAAnalysisPage, ServiceHealthPage, ExperimentTimelinePage } from './pages/Phase2Pages';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -52,6 +53,11 @@ function App() {
                 <Route path="projects/:id" element={<ProjectDetailsPage />} />
                 <Route path="projects/:id/topology" element={<ServiceTopologyPage />} />
                 <Route path="settings" element={<SettingsPage />} />
+                <Route path="monitoring" element={<LiveMonitoringPage />} />
+                <Route path="faults" element={<FaultInjectionPage />} />
+                <Route path="rca" element={<RCAAnalysisPage />} />
+                <Route path="health" element={<ServiceHealthPage />} />
+                <Route path="timeline" element={<ExperimentTimelinePage />} />
               </Route>
             </Routes>
           </BrowserRouter>

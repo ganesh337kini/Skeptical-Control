@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
-import { Layout, FolderOpen, Upload, Settings, Activity } from 'lucide-react';
+import { Layout, FolderOpen, Upload, Settings, Activity, Zap, BrainCircuit, HeartPulse, Clock3 } from 'lucide-react';
 import { cn } from '../lib/utils';
 
 const navigation = [
@@ -7,6 +7,11 @@ const navigation = [
   { name: 'Projects', href: '/projects', icon: FolderOpen },
   { name: 'Upload Project', href: '/projects/upload', icon: Upload },
   { name: 'Settings', href: '/settings', icon: Settings },
+  { name: 'Live Monitoring', href: '/monitoring', icon: Activity },
+  { name: 'Fault Injection', href: '/faults', icon: Zap },
+  { name: 'RCA Analysis', href: '/rca', icon: BrainCircuit },
+  { name: 'Service Health', href: '/health', icon: HeartPulse },
+  { name: 'Experiment Timeline', href: '/timeline', icon: Clock3 },
 ];
 
 export default function Sidebar() {

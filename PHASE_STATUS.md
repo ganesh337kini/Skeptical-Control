@@ -122,6 +122,17 @@
 - [x] Create security documentation
 - [x] Update PHASE_STATUS.md
 
+## Phase 2 — Fault Injection, Observability and Root-Cause Analysis
+
+- [x] Prometheus, Grafana, OpenTelemetry Collector, Locust, and Toxiproxy Compose integrations
+- [x] Experiment metadata and timeline persistence
+- [x] Repeatable workload configuration endpoint
+- [x] Controlled fault lifecycle with separate ground truth
+- [x] Automatic and manual fault cleanup/reset
+- [x] Transparent baseline RCA without ground-truth leakage
+- [x] Independent service investigation priority ranking
+- [x] Monitoring, fault, RCA, health, topology, and timeline frontend routes
+
 ## Completion Checklist
 
 ### Manual Testing

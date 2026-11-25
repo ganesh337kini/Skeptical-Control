@@ -6,6 +6,25 @@
 http://localhost:3001/api
 ```
 
+## Phase 2 Experiment API
+
+All Phase 2 routes are available through the backend proxy at `/api/research` and require authentication.
+
+- `POST /api/research/experiments` — create an experiment linked to a project and optional project version/environment.
+- `GET /api/research/experiments` — list experiment metadata.
+- `GET /api/research/experiments/:id` — retrieve experiment state, timeline, telemetry references, faults, RCA, and rankings.
+- `POST /api/research/experiments/:id/workloads` — start a repeatable Locust workload configuration.
+- `POST /api/research/experiments/:id/faults` — inject a Toxiproxy fault; the response includes separate known ground truth with target, type, intensity, start/end time, and status.
+- `POST /api/research/experiments/:id/faults/:faultIndex/cleanup` — remove a fault toxic immediately.
+- `POST /api/research/experiments/:id/telemetry` — store telemetry and external telemetry references.
+- `POST /api/research/experiments/:id/baseline` — store healthy baseline data.
+- `POST /api/research/experiments/:id/logs` — append execution logs.
+- `POST /api/research/experiments/:id/rca` — run the explainable baseline RCA engine.
+- `POST /api/research/experiments/:id/priorities` — rank affected services separately from RCA confidence.
+- `POST /api/research/experiments/:id/reset` — clean active faults and mark the environment reset.
+
+RCA request fields: `metrics`, `logs`, `traces`, `services`, and `dependencies`. The RCA response provides ranked suspects, evidence, uncertainty, impacted services, supporting traces, and alternative hypotheses. The returned score is explicitly a relative hypothesis weight, not a calibrated probability.
+
 ## Authentication
 
 Most endpoints require JWT authentication. Include the token in the Authorization header:
