@@ -38,29 +38,33 @@ A research-oriented platform for analyzing microservices applications, reproduci
 ## Quick Start
 
 ### Prerequisites
-- Docker and Docker Compose
-- Node.js 18+ (for local development)
-- Python 3.11+ (for local development)
+- Docker Desktop with Docker Compose
+- Node.js 18+ for backend development and Node.js 22.12+ for frontend development (only outside Docker)
+- Python 3.11+ (only for local development outside Docker)
 
 ### Running the Platform
 
 1. Clone the repository:
 ```bash
-git clone <repository-url>
+git clone https://github.com/ganesh337kini/Skeptical-Control.git
 cd Skeptical-Control
 ```
 
-2. Copy environment variables:
-```bash
-cp .env.example .env
+2. Create your local environment file:
+```powershell
+Copy-Item .env.example .env
 ```
+
+`.env` is for local settings and is excluded from Git. The sample credentials are for local development only; replace them before any shared or production deployment.
 
 3. Start all services:
 ```bash
-docker-compose up
+docker compose up --build
 ```
 
-4. Access the application:
+PostgreSQL runs in its own container; you do not need to install it separately. The backend applies database migrations automatically at startup.
+
+4. Open the application:
 - Frontend: http://localhost:5173
 - Backend API: http://localhost:3001
 - Research Engine: http://localhost:8000
@@ -90,6 +94,22 @@ pip install -r requirements.txt
 uvicorn src.main:app --reload
 ```
 
+### Tests
+
+Run tests from each service folder:
+
+```bash
+# backend
+npm test -- --runInBand
+
+# frontend
+npm test -- --run
+
+# research engine
+pip install -e ".[test]"
+python -m pytest
+```
+
 ## Project Structure
 
 ```
@@ -105,7 +125,9 @@ Skeptical-Control/
 
 ## Current Status
 
-Phase 1: Foundation and Isolated Microservice Testbed - In Progress
+Phase 1: Foundation and Isolated Microservice Testbed - Completed
+
+Phase 2: Fault Injection, Observability and Root-Cause Analysis - Implemented; integration verification is environment-dependent
 
 See [PHASE_STATUS.md](./PHASE_STATUS.md) for detailed progress.
 
